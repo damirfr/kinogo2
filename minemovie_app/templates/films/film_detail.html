@@ -1,0 +1,50 @@
+{% extends '../base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="film-detail">
+  <div class="cover" style="
+      background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.748)),
+        url('{{ film.url_banner }}');
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-position: center;
+    ">
+    <div class="container">
+      <h1>{{film.name}}</h1>
+      <p>
+        Директор: <strong>{{ film.director }}</strong>
+      </p>
+      <p>Жанр:
+        <strong>{{ film.genre }}</strong>
+      </p>
+      <p>Рейтинг <strong>{{ film.rating }}</strong></p>
+      <p>
+        {{ film.description }}
+      </p>
+      <a href="{{film.url_film}}" class="btn btn-primary">Смотреть</a>
+    </div>
+  </div>
+  <div id="film">
+    <iframe
+      width="80%"
+      height="650"
+      src="{{film.url_film}}"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+{% else %}
+<div class="container mt-5 mb-5">
+  <div class="card-body">
+    <div class="alert alert-primary mb-5" role="alert">
+      <p>Пожалуйста зарегистрируйтесь чтобы посмотреть фильм</p>
+    </div>
+    <a href="" class="btn btn-primary">Регистрация</a>
+    <a href="" class="btn btn-primary">Войти</a>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
